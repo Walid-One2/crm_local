@@ -10,38 +10,35 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('fonction_id')->nullable();
+            $table->foreignId('fonction_id')
+                  ->nullable()
+                  ->constrained('fonctions')
+                  ->nullOnDelete()
+                  ->cascadeOnUpdate();
             $table->unsignedBigInteger('responsable_id')->nullable();
             $table->integer('statut')->nullable();
             $table->string('email', 180)->unique();
             $table->string('tel', 20)->nullable();
-            $table->string('password', 255)->nullable();
+            $table->string('password')->nullable();
             $table->longText('roles')->nullable();
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at')->nullable();
-            $table->timestamp('deleted_at')->nullable();
-            $table->string('remember_token', 100)->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->softDeletes(); // deleted_at
+            $table->rememberToken();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('name', 255)->nullable();
+            $table->string('name')->nullable();
 
-            $table->foreign('fonction_id', 'fk_users_fonction')
-                  ->references('id')->on('fonctions')
-                  ->onDelete('set null')
-                  ->onUpdate('cascade');
-
-            $table->foreign('responsable_id', 'fk_users_responsable')
-                  ->references('id')->on('users')
-                  ->onDelete('set null')
-                  ->onUpdate('cascade');
+            // Auto-référence : responsable est un autre user
+            $table->foreign('responsable_id')
+                  ->references('id')
+                  ->on('users')
+                  ->nullOnDelete()
+                  ->cascadeOnUpdate();
         });
     }
 
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropForeign('fk_users_fonction');
-            $table->dropForeign('fk_users_responsable');
-        });
         Schema::dropIfExists('users');
     }
 };

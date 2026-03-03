@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('responsables', function (Blueprint $table) {
             $table->id();
             $table->string('responsable_nom');
+            $table->timestamps();
         });
     }
 
