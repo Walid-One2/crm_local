@@ -10,16 +10,16 @@ class FonctionSeeder extends Seeder
     public function run(): void
     {
         $fonctions = [
-            ['id' => 1,  'intitule' => 'ROLE_ADMIN'],
-            ['id' => 2,  'intitule' => 'ROLE_RESPONSABLE'],
-            ['id' => 3,  'intitule' => 'ROLE_COMMERCIAL'],
-            ['id' => 4,  'intitule' => 'ROLE_CHARGESUIVI'],
-            ['id' => 5,  'intitule' => 'ROLE_RH'],
-            ['id' => 6,  'intitule' => 'ROLE_COMMERCIAL_F'],
-            ['id' => 7,  'intitule' => 'ROLE_CREDITEUR'],
-            ['id' => 8,  'intitule' => 'ROLE_RH_AGENDA'],
-            ['id' => 9,  'intitule' => 'ROLE_CHARGESUIVI_RH'],
-            ['id' => 10, 'intitule' => 'ROLE_CHARGESUIVI_DIGITAL'],
+            ['intitule' => 'ROLE_ADMIN'],
+            ['intitule' => 'ROLE_RESPONSABLE'],
+            ['intitule' => 'ROLE_COMMERCIAL'],
+            ['intitule' => 'ROLE_CHARGESUIVI'],
+            ['intitule' => 'ROLE_RH'],
+            ['intitule' => 'ROLE_COMMERCIAL_F'],
+            ['intitule' => 'ROLE_CREDITEUR'],
+            ['intitule' => 'ROLE_RH_AGENDA'],
+            ['intitule' => 'ROLE_CHARGESUIVI_RH'],
+            ['intitule' => 'ROLE_CHARGESUIVI_DIGITAL'],
         ];
 
         DB::table('fonctions')->insert($fonctions);
