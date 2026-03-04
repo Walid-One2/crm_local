@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Fonction extends Model
+{
+    protected $fillable = ['intitule'];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
+}
