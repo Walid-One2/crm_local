@@ -43,4 +43,9 @@ class Compte extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function site()
+    {
+        return $this->belongsTo(site::class);
+    }
 }
