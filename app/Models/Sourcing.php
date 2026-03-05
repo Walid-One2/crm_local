@@ -8,7 +8,6 @@ class Sourcing extends Model
 {
     protected $fillable = [
         'user_id',
-        'assigne_id',
         'compte_id',
         'date_debut_mission',
         'date_fin_mission',
@@ -29,7 +28,6 @@ class Sourcing extends Model
         'date_signature',
         'type_contrat',
         'salaire',
-        'monnaiesalaire_id',
         'type_salaire',
         'date_recrutement',
     ];
@@ -38,4 +36,10 @@ class Sourcing extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function compte()
+    {
+        return $this->belongsTo(Compte::class);
+    }
+
 }
