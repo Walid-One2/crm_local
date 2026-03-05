@@ -42,4 +42,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Responsable::class);
     }
+
+    public function sourcings()
+    {
+        return $this->hasMany(Sourcing::class);
+    }
+
+    public function comptes()
+    {
+        return $this->hasMany(Compte::class);
+    }
 }
